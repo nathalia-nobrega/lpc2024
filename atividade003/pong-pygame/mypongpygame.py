@@ -82,7 +82,9 @@ while game_loop:
         # clear screen
         screen.fill(COLOR_BLACK)
 
-        # ball collision with the wall
+        # ball collision with the lateral wall
+
+
         if ball_y > 700:
             ball_dy *= -1
             bounce_sound_effect.play()
@@ -90,29 +92,32 @@ while game_loop:
             ball_dy *= -1
             bounce_sound_effect.play()
 
+
         # ball collision with the player 1 's paddle
         if ball_x < 100:
             if player_1_y < ball_y + 25:
                 if player_1_y + 150 > ball_y:
-                    ball_dx *= -1
+                    # 1.2. altere a velocidade da bola
+                    ball_dx *= -1.05
                     bounce_sound_effect.play()
 
         # ball collision with the player 2 's paddle
         if ball_x > 1160:
             if player_2_y < ball_y + 25:
                 if player_2_y + 150 > ball_y:
-                    ball_dx *= -1
+                    # 1.2. altere a velocidade da bola
+                    ball_dx *= -1.05
                     bounce_sound_effect.play()
 
         # scoring points
-        if ball_x < -50:
+        if ball_x < 0:
             ball_x = 640
             ball_y = 360
             ball_dy *= -1
             ball_dx *= -1
             score_2 += 1
             scoring_sound_effect.play()
-        elif ball_x > 1320:
+        elif ball_x > 1280:
             ball_x = 640
             ball_y = 360
             ball_dy *= -1
@@ -125,14 +130,15 @@ while game_loop:
         ball_y = ball_y + ball_dy
 
         # player 1 up movement
+        # aumentando a velocidade do jogador 1
         if player_1_move_up:
-            player_1_y -= 5
+            player_1_y -= 10
         else:
             player_1_y += 0
 
         # player 1 down movement
         if player_1_move_down:
-            player_1_y += 5
+            player_1_y += 10
         else:
             player_1_y += 0
 
@@ -145,7 +151,10 @@ while game_loop:
             player_1_y = 570
 
         # player 2 "Artificial Intelligence"
-        player_2_y = ball_y
+
+        # 1.1 ajusta a posição vertical para que se mova mais lentamente
+        # player_2 movement
+        player_2_y = ball_y * 0.78 - 25
         if player_2_y <= 0:
             player_2_y = 0
         elif player_2_y >= 570:
@@ -157,7 +166,7 @@ while game_loop:
         # drawing objects
         screen.blit(ball, (ball_x, ball_y))
         screen.blit(player_1, (50, player_1_y))
-        screen.blit(player_2, (1180, player_2_y))
+        screen.blit(player_2, (1170, player_2_y))
         screen.blit(score_text, score_text_rect)
     else:
         # drawing victory
