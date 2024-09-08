@@ -157,6 +157,8 @@ while game_loop:
         # player 2 "Artificial Intelligence"
 
         # 1.1 ajusta a posição vertical para que se mova mais lentamente
+        # e fique 25 pixels acima da bola
+
         # player_2 movement
         player_2_y = ball_y * 0.78 - 25
         if player_2_y <= 0:
