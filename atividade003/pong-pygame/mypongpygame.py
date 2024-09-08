@@ -99,6 +99,8 @@ while game_loop:
                 if player_1_y + 150 > ball_y:
                     # 1.2. altere a velocidade da bola
                     ball_dx *= -1.05
+                    # 1.2. altere o angulo da bola
+                    ball_dy *= -1
                     bounce_sound_effect.play()
 
         # ball collision with the player 2 's paddle
@@ -107,6 +109,8 @@ while game_loop:
                 if player_2_y + 150 > ball_y:
                     # 1.2. altere a velocidade da bola
                     ball_dx *= -1.05
+                    # 1.2. altere o angulo da bola
+                    ball_dy *= -1
                     bounce_sound_effect.play()
 
         # scoring points
